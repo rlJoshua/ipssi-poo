@@ -1,23 +1,40 @@
 <?php
 
 require_once('vendor/autoload.php');
+use Ipssi\Evaluation\Diviseur;
+use Ipssi\Evaluation\Exception\InvalidIndexException;
+
 
 $climate = new League\CLImate\CLImate;
 
-class Diviseur {
-    public function division(int $index, int $diviseur)
+do{
+    try
     {
-        $valeurs = [17, 12, 15, 38, 29, 157, 89, -22, 0, 5];
+        $input = $climate->input("Entrez l’indice de l’entier à diviser : ");
+        $index = $input->prompt();
 
-        return $valeurs[$index] / $diviseur;
+        $input = $climate->input("Entrez le diviseur : ");
+        $diviseur = $input->prompt();
+
+        $resultat = (new Diviseur())->division($index, $diviseur);
+        $climate->output("Le résultat de la division est : $resultat");
     }
-}
+    catch (\TypeError $e)
+    {
+        $climate->output("L'index ou le diviseur saisie n'est pas un nombre.");
+    }
+    catch (InvalidIndexException $e)
+    {
+        $climate->output("L'index saisie n'est pas compris entre 0 et 9.");
+    }
+    catch (DivisionByZeroError $e)
+    {
+        $climate->output("Le diviseur saisie est un 0.");
+    }
+    catch (Throwable $e)
+    {
+        $climate->output("Erreur de saisie");
+    }
 
-$input = $climate->input("Entrez l’indice de l’entier à diviser : ");
-$index = $input->prompt();
-
-$input = $climate->input("Entrez le diviseur : ");
-$diviseur = $input->prompt();
-
-$climate->output("Le résultat de la division est : " . (new Diviseur())->division($index, $diviseur));
+}while(!isset($resultat));
 
