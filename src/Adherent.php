@@ -22,8 +22,7 @@ class Adherent
     {
         foreach ($this->pret as $pret) {
             if($this->getFinPret($pret)){
-
-                $bibliotheque->getOeuvreByRef($this->pret->getRef());
+                $bibliotheque->getOeuvreByRef($pret->getRef());
                 $this->pret = null;
             }
             else
@@ -31,8 +30,6 @@ class Adherent
                 return;
             }
         }
-
-
 
 
         foreach ($bibliotheque->getOeuvres() as $oeuvre)
