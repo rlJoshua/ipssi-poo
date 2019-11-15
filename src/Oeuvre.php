@@ -11,7 +11,6 @@ class Oeuvre
     private $titre;
     private $emprunt;
 
-
     public function __construct(string $ref, string $titre, bool $emprunt = false)
     {
         $this->ref = $ref;

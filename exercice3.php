@@ -19,18 +19,21 @@ $oeuvres = array(
 
 $adherents = array(
     new Adherent('Joshua' ),
-    new Adherent('Mathis', $oeuvres[0]),
-    new Adherent('David', $oeuvres[3]),
-    new Adherent('Melanie', $oeuvres[4]),
-    new Adherent('Elisabeth', $oeuvres[1])
+    new Adherent('Mathis', array($oeuvres[0])),
+    new Adherent('David', array($oeuvres[3])),
+    new Adherent('Melanie', array($oeuvres[4])),
+    new Adherent('Elisabeth', array($oeuvres[1]))
 );
 
 $bibliotheque = new Bibliotheque($oeuvres, $adherents);
 
 $joshua = $bibliotheque->getAdherentByName("Joshua");
 $elisa = $bibliotheque->getAdherentByName("Elisabeth");
-var_dump($joshua);
+//var_dump($joshua);
 echo "**************************".PHP_EOL;
 $joshua->emprunter($bibliotheque, "Le Loup");
 echo "**************************".PHP_EOL;
+
+$joshua->emprunter($bibliotheque, "Le Loup");
+var_dump($joshua->getPret("3002F"));
 
