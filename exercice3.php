@@ -7,33 +7,64 @@ use Ipssi\Evaluation\Pret;
 
 require_once('vendor/autoload.php');
 
-$oeuvres = array(
-    new Oeuvre('3000F', 'Le Loup',true),
-    new Oeuvre('3001F', 'Le Loup',true),
-    new Oeuvre('3002F', 'Le Loup',false),
-    new Oeuvre('5001F', 'La chèvre',true),
-    new Oeuvre('5001F', 'La chèvre',true),
-    new Oeuvre('5001F', 'La chèvre',false),
-    new Oeuvre('5001F', 'La chèvre',false)
-);
+$bibliotheque = new Bibliotheque();
 
-$adherents = array(
-    new Adherent('Joshua' ),
-    new Adherent('Mathis', array($oeuvres[0])),
-    new Adherent('David', array($oeuvres[3])),
-    new Adherent('Melanie', array($oeuvres[4])),
-    new Adherent('Elisabeth', array($oeuvres[1]))
-);
+//AJout des Oeuvres
+$bibliotheque->addOeuvre("3000F", "Le loup");
+$bibliotheque->addOeuvre("3001F", "Le loup");
+$bibliotheque->addOeuvre("3002F", "Le loup");
+$bibliotheque->addOeuvre("5001F", "La chèvre");
+$bibliotheque->addOeuvre("5002F", "La chèvre");
+$bibliotheque->addOeuvre("5003F", "La chèvre");
+$bibliotheque->addOeuvre("5004F", "La chèvre");
 
-$bibliotheque = new Bibliotheque($oeuvres, $adherents);
+//AJout des Adherents
+$bibliotheque->addAdherents("Joshua");
+$bibliotheque->addAdherents("Mathis");
+$bibliotheque->addAdherents("David");
+$bibliotheque->addAdherents("Melanie");
+$bibliotheque->addAdherents("Elisa");
 
+//Recuperation des adherents dans une variable chacune
 $joshua = $bibliotheque->getAdherentByName("Joshua");
-$elisa = $bibliotheque->getAdherentByName("Elisabeth");
-//var_dump($joshua);
-echo "**************************".PHP_EOL;
-$joshua->emprunter($bibliotheque, "Le Loup");
-echo "**************************".PHP_EOL;
+$mathis = $bibliotheque->getAdherentByName("Mathis");
+$david = $bibliotheque->getAdherentByName("David");
+$melanie = $bibliotheque->getAdherentByName("Melanie");
+$elisa = $bibliotheque->getAdherentByName("Elisa");
 
-$joshua->emprunter($bibliotheque, "Le Loup");
-var_dump($joshua->getPret("3002F"));
+//Les adherents font des emprunts
+echo PHP_EOL."Mathis souhaite emprunté l'oeuvre Le loup.".PHP_EOL;
+$mathis->emprunter($bibliotheque, "Le loup", new DateTime("2019-11-01"));
+
+echo PHP_EOL."Mathis souhaite emprunté l'oeuvre La chèvre.".PHP_EOL;
+$mathis->emprunter($bibliotheque, "La chèvre");
+
+echo PHP_EOL."David souhaite emprunté l'oeuvre Le lion.".PHP_EOL;
+$david->emprunter($bibliotheque, "Le lion");
+
+echo PHP_EOL."David souhaite emprunté l'oeuvre La chevre.".PHP_EOL;
+$david->emprunter($bibliotheque, "La chèvre");
+
+echo PHP_EOL."Melanie souhaite emprunté l'oeuvre La chevre.".PHP_EOL;
+$melanie->emprunter($bibliotheque, "La chèvre");
+
+echo PHP_EOL."Elisa souhaite emprunté l'oeuvre Le loup & La chevre.".PHP_EOL;
+$elisa->emprunter($bibliotheque, "Le loup");
+$elisa->emprunter($bibliotheque, "La chèvre");
+
+echo PHP_EOL."Joshua souhaite emprunté l'oeuvre Le loup".PHP_EOL;
+$joshua->emprunter($bibliotheque, "Le loup", new DateTime('2019-10-22'));
+
+echo PHP_EOL."Joshua souhaite emprunté l'oeuvre La chevre.".PHP_EOL;
+$joshua->emprunter($bibliotheque, "La chèvre");
+
+echo PHP_EOL."Joshua souhaite rendre l'oeuvre Le loup.".PHP_EOL;
+$joshua->rendre($bibliotheque, "3002F");
+
+echo PHP_EOL."David souhaite emprunté l'oeuvre Le loup.".PHP_EOL;
+$david->emprunter($bibliotheque, "Le loup");
+
+echo PHP_EOL."Mathis souhaite rendre l'oeuvre Le loup.".PHP_EOL;
+$mathis->rendre($bibliotheque, "3000F");
+
 

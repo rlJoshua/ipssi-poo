@@ -9,7 +9,7 @@ class Bibliotheque
     private $oeuvres;
     private $adherents;
 
-    public function __construct(array $oeuvres, array $adherents)
+    public function __construct(array $oeuvres = array(), array $adherents = array())
     {
         $this->oeuvres = $oeuvres;
         $this->adherents = $adherents;
@@ -19,6 +19,12 @@ class Bibliotheque
     {
         $adherent = new Adherent($nom);
         array_push($this->adherents, $adherent);
+    }
+
+    public function addOeuvre(string $ref, string $titre)
+    {
+        $oeuvre = new Oeuvre($ref, $titre);
+        array_push($this->oeuvres, $oeuvre);
     }
 
     public function getAdherentByName(string $nom)

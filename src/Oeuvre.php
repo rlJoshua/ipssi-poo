@@ -15,11 +15,7 @@ class Oeuvre
     {
         $this->ref = $ref;
         $this->titre = $titre;
-        if ($emprunt){
-            $this->setEmprunt();
-        }else{
-            $this->emprunt = $emprunt;
-        }
+        $this->emprunt = $emprunt;
     }
 
     public function getRef()
@@ -53,12 +49,6 @@ class Oeuvre
     public function setEmprunt()
     {
         $this->emprunt = !$this->emprunt;
-        if ($this->emprunt){
-            $this->date = (new \DateTime())->format("d-m-Y");
-        }
-        if (!$this->emprunt){
-            $this->date = null;
-        }
     }
 
 

@@ -20,22 +20,22 @@ class Pret
 
     public function getDateLimit(): \DateTimeInterface
     {
-        return $this->date->add(new DateInterval('P14D'));
+        $date = $this->date->add(new DateInterval('P14D'));
+        return $date;
     }
 
     public function getFinPret(): bool
     {
-            if ($this->getDateLimit() >= new \DateTime()){
+            if ($this->getDateLimit() <= new \DateTime()){
                 $res = true;
             }
             else
             {
-                $res = true;
+                $res = false;
             }
 
         return $res;
     }
-
 
     public function getOeuvre(): Oeuvre
     {
