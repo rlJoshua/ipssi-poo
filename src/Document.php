@@ -17,7 +17,46 @@ class Document
         $this->elements = $elements;
     }
 
-    public function addElement(Element $element){
+    public function compteRendu()
+    {
+        $name = $this->name;
+        $red = $this->getColor()->getRed();
+        $green = $this->getColor()->getGreen();
+        $blue = $this->getColor()->getBlue();
+        echo PHP_EOL."Document: $name - Couleur RGB($red, $green, $blue)".PHP_EOL;
+
+        foreach ($this->elements as $element){
+
+            if($element instanceof Texte){
+                $text = $element->getValue();
+                $red = $element->getColor()->getRed();
+                $green = $element->getColor()->getGreen();
+                $blue = $element->getColor()->getBlue();
+                echo PHP_EOL."Text: $text - Couleur RGB($red , $green, $blue)".PHP_EOL;
+            }
+            if($element instanceof Form){
+                $text = $element->getName();
+                $red = $element->getColor()->getRed();
+                $green = $element->getColor()->getGreen();
+                $blue = $element->getColor()->getBlue();
+                echo PHP_EOL."Forme: $text - Couleur RGB($red , $green, $blue)".PHP_EOL;
+            }
+            if($element instanceof Image){
+                $text = $element->getName();
+                $red = $element->getColor()->getRed();
+                $green = $element->getColor()->getGreen();
+                $blue = $element->getColor()->getBlue();
+                echo PHP_EOL."Image: $text - Couleur RGB($red , $green, $blue)".PHP_EOL;
+            }
+        }
+    }
+    public function getElements()
+    {
+        return $this->elements;
+    }
+
+    public function addElement(Element $element)
+    {
         array_push($this->elements, $element);
     }
 
