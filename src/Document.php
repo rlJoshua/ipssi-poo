@@ -32,21 +32,28 @@ class Document
                 $red = $element->getColor()->getRed();
                 $green = $element->getColor()->getGreen();
                 $blue = $element->getColor()->getBlue();
-                echo PHP_EOL."Text: $text - Couleur RGB($red , $green, $blue)".PHP_EOL;
+                $positionX = $element->getPositionX();
+                $positionY = $element->getPositionY();
+                echo PHP_EOL."Texte: $text - Couleur RGB($red , $green, $blue)".PHP_EOL;
+                echo "Position X: $positionX - Position Y: $positionY".PHP_EOL;
             }
+
             if($element instanceof Form){
-                $text = $element->getName();
+                $name = $element->getName();
                 $red = $element->getColor()->getRed();
                 $green = $element->getColor()->getGreen();
                 $blue = $element->getColor()->getBlue();
-                echo PHP_EOL."Forme: $text - Couleur RGB($red , $green, $blue)".PHP_EOL;
+                $positionX = $element->getPositionX();
+                $positionY = $element->getPositionY();
+                echo PHP_EOL."Forme: $name - Couleur RGB($red , $green, $blue)".PHP_EOL;
+                echo "Position X: $positionX - Position Y: $positionY".PHP_EOL;
             }
+
             if($element instanceof Image){
-                $text = $element->getName();
-                $red = $element->getColor()->getRed();
-                $green = $element->getColor()->getGreen();
-                $blue = $element->getColor()->getBlue();
-                echo PHP_EOL."Image: $text - Couleur RGB($red , $green, $blue)".PHP_EOL;
+                $name = $element->getName();
+                $positionX = $element->getPositionX();
+                $positionY = $element->getPositionY();
+                echo PHP_EOL."Image: $name - Position X: $positionX - Position Y: $positionY".PHP_EOL;
             }
         }
     }

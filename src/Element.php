@@ -6,11 +6,11 @@ namespace Ipssi\Evaluation;
 
 abstract class Element
 {
-    private $positionX;
-    private $positionY;
-    private $color;
+    protected $positionX;
+    protected $positionY;
+    protected $color;
 
-    public function __construct(int $positionX, int $positionY, Color $color)
+    public function __construct(int $positionX, int $positionY, Color $color = null)
     {
         $this->positionX = $positionX;
         $this->positionY = $positionY;

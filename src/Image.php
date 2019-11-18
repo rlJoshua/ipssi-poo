@@ -9,9 +9,9 @@ class Image extends Element
     private $name;
 
 
-    public function __construct(string $name, int $positionX, int $positionY, Color $color)
+    public function __construct(string $name, int $positionX, int $positionY)
     {
-        parent::__construct($positionX, $positionY, $color);
+        parent::__construct($positionX, $positionY);
         $this->name = $name;
     }
 
@@ -32,7 +32,7 @@ class Image extends Element
 
     public function getPositionY(): int
     {
-        return parent::getPositionY(); //
+        return parent::getPositionY(); 
     }
 
 }

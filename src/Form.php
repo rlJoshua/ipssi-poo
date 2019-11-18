@@ -4,16 +4,15 @@
 namespace Ipssi\Evaluation;
 
 
-class Form extends Element
+abstract class Form extends Element
 {
-    private $name;
+    protected $name;
 
     public function __construct(string $name, int $positionX, int $positionY, Color $color)
     {
         parent::__construct($positionX, $positionY, $color);
         $this->name = $name;
     }
-
 
     public function getName(): string
     {
